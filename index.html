@@ -53,8 +53,8 @@
               
               	<br/>
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="selectbasic">Medikament auswählen</label>
-				  <div class="col-md-4">
+				  <label class="col-md-5 control-label" for="selectbasic">Medikament auswählen</label>
+				  <div class="col-md-5">
 				    <select id="selectbasic" name="selectbasic" class="form-control">
 				      <option value="1">Viagra</option>
 				      <option value="2">Aspririn</option>
@@ -66,8 +66,8 @@
 				<hr>
 				
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="radios">Geschlecht</label>
-			  <div class="col-md-4">
+			  <label class="col-md-5 control-label" for="radios">Geschlecht</label>
+			  <div class="col-md-5">
 			  <div class="radio">
 			    <label for="radios-0">
 			      <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
@@ -84,12 +84,30 @@
 			  </div>
 			  
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="radios">Alter</label>
-			  <div class="col-md-4">
+			  <label class="col-md-5 control-label" for="radios">Alter</label>
+			  <div class="col-md-5">
 			  	<input type="text" id="amount" readonly style="border:0; color:#0B5DC3; font-weight:bold;">
 			  	<div id="slider-range"></div>
 			  </div>
 			  </div>
+			  
+			  <div class="form-group">
+				  <label class="col-md-5 control-label" for="selectbasic">Vorbelastung auswählen</label>
+				  <div class="col-md-5">
+				  	<br/>
+				    <select id="selectbasic" name="selectbasic" class="form-control">
+				      <option value="1">Schnupfen</option>
+				      <option value="2">Husten</option>
+				    </select>
+				  </div>
+			</div>
+			  
+			  
+			<div class="form-group">
+			  <div class="col-md-5">
+			    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Statistik erstellen</button>
+			  </div>
+			</div>
 			 
 			  
 	</div>
@@ -112,7 +130,7 @@
 		      max: 100,
 		      values: [ 0, 100],
 		      slide: function( event, ui ) {
-		        $( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+		        $( "#amount" ).val(ui.values[0] + " - " + ui.values[1] );
 		      }
 		    });
 		    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
