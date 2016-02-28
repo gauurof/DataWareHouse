@@ -1,0 +1,27 @@
+!SESSION 2016-02-28 14:19:17.883 -----------------------------------------------
+eclipse.buildId=3.6.1.201410201044
+java.version=1.7.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=de_DE
+Command-line arguments:  -data /home/lucas/Dokumente/DataWareHouse -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.osgi 2 1 2016-02-28 14:21:01.570
+!MESSAGE NLS missing message: HttpServerSettingsTab_Title in: com.aptana.js.debug.ui.internal.launchConfigurations.messages
+
+!ENTRY org.eclipse.core.resources 4 1 2016-02-28 17:38:06.761
+!MESSAGE Problems occurred while refreshing local changes
+!SUBENTRY 1 org.eclipse.core.resources 4 1 2016-02-28 17:38:06.761
+!MESSAGE Problems occurred while refreshing local changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:923)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1699)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:167)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Contains: The project description file (.project) for 'DataWareHouse' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SUBENTRY 2 org.eclipse.core.resources 4 271 2016-02-28 17:38:06.765
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 3 org.eclipse.core.resources 4 567 2016-02-28 17:38:06.765
+!MESSAGE The project description file (.project) for 'DataWareHouse' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
