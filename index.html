@@ -55,14 +55,13 @@
 				<div class="form-group">
 				  <label class="col-md-5 control-label" for="selectbasic">Medikament auswählen</label>
 				  <div class="col-md-5">
-				    <select id="selectbasic" name="selectbasic" class="form-control">
+				    <select id="medikament" name="medikament" class="form-control">
 				      <option value="1">Viagra</option>
 				      <option value="2">Aspririn</option>
 				    </select>
 				  </div>
 				</div>
 				<br/>
-				
 				<hr>
 				
 			<div class="form-group">
@@ -70,13 +69,13 @@
 			  <div class="col-md-5">
 			  <div class="radio">
 			    <label for="radios-0">
-			      <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+			      <input type="radio" name="geschlecht" id="radios-0" value="m" checked="checked">
 			      Männlich
 			    </label>
 				</div>
 			  <div class="radio">
 			    <label for="radios-1">
-			      <input type="radio" name="radios" id="radios-1" value="2">
+			      <input type="radio" name="geschlecht" id="radios-1" value="f">
 			      Weiblich
 			    </label>
 				</div>
@@ -86,7 +85,7 @@
 			<div class="form-group">
 			  <label class="col-md-5 control-label" for="radios">Alter</label>
 			  <div class="col-md-5">
-			  	<input type="text" id="amount" readonly style="border:0; color:#0B5DC3; font-weight:bold;">
+			  	<input type="text" id="alter" readonly style="border:0; color:#0B5DC3; font-weight:bold;">
 			  	<div id="slider-range"></div>
 			  </div>
 			  </div>
@@ -95,7 +94,7 @@
 				  <label class="col-md-5 control-label" for="selectbasic">Vorbelastung auswählen</label>
 				  <div class="col-md-5">
 				  	<br/>
-				    <select id="selectbasic" name="selectbasic" class="form-control">
+				    <select id="vorbelastung" name="vorbelastung" class="form-control">
 				      <option value="1">Schnupfen</option>
 				      <option value="2">Husten</option>
 				    </select>
@@ -105,7 +104,7 @@
 			  
 			<div class="form-group">
 			  <div class="col-md-5">
-			    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Statistik erstellen</button>
+			    <button id="erstellen" name="erstellen" class="btn btn-primary">Statistik erstellen</button>
 			  </div>
 			</div>
 			 
@@ -130,10 +129,10 @@
 		      max: 100,
 		      values: [ 0, 100],
 		      slide: function( event, ui ) {
-		        $( "#amount" ).val(ui.values[0] + " - " + ui.values[1] );
+		        $( "#alter" ).val(ui.values[0] + " - " + ui.values[1] );
 		      }
 		    });
-		    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
+		    $( "#alter" ).val( $( "#slider-range" ).slider( "values", 0 ) +
 		      " - " + $( "#slider-range" ).slider( "values", 1 ) );
 		  });
  	 </script>
