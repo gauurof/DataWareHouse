@@ -107,7 +107,6 @@
 			    <button id="erstellen" name="erstellen" class="btn btn-primary">Statistik erstellen</button>
 			  </div>
 			</div>
-			
 			</form>
 			  
 	</div>
@@ -128,7 +127,7 @@
 		      range: true,
 		      min: 0,
 		      max: 100,
-		      values: [ 0, 100],
+		      values: [ 10, 90],
 		      slide: function( event, ui ) {
 		        $( "#alter" ).val(ui.values[0] + " - " + ui.values[1] );
 		      }
