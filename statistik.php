@@ -21,7 +21,7 @@ $ID_medikament = 1; #$_POST["medikament"];
 
 # String, $geschlecht = "m"/"f"
 if(isset($_POST["geschlecht"])){
-	$geschlecht = " AND `geschlecht` ='" . $_POST["geschlecht"] . "'";
+	$geschlecht = " AND `Geschlecht` ='" . $_POST["geschlecht"] . "'";
 }
 else{
 	$geschlecht = "";
