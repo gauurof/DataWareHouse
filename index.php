@@ -1,3 +1,9 @@
+<?php
+
+include_once('db.php');
+$medikamente = getMedikamente();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -56,10 +62,18 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="selectbasic">Medikament auswählen</label>
 								<div class="col-md-5">
+								
 									<select id="medikament" name="medikament" class="form-control">
-										<option value="1">Viagra</option>
-										<option value="2">Aspririn</option>
+									<?php
+										for($i = 0; $i < count($medikamente); ++$i) {
+											    
+										echo '<option value="' . $medikamente['ID'] . '">' . $medikamente['Name'] . '</option>';
+											}
+										
+										?>
 									</select>
+										<!-- <option value="1">Viagra</option> -->
+										<!-- <option value="2">Aspririn</option> -->
 									<hr>
 								</div>
 							</div>							
