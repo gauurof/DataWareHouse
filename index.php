@@ -72,8 +72,7 @@ $medikamente = getMedikamente();
 										
 										?>
 									</select>
-										<!-- <option value="1">Viagra</option> -->
-										<!-- <option value="2">Aspririn</option> -->
+										
 									<hr>
 								</div>
 							</div>							

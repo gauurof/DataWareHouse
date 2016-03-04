@@ -11,7 +11,7 @@ function getNebenwirkungen(){
 
 function getMedikamente(){
 	$tmp = mysql_query("SELECT `Name` FROM `Medikament`;");
-	while($row = mysql_fetch_object($tmp)){
+	while($row = mysql_fetch_array($tmp)){
 		$Name[] = $row;
 	}
 	return $Name;
