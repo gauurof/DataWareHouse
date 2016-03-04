@@ -67,7 +67,7 @@ $medikamente = getMedikamente();
 									<?php
 										for($i = 0; $i < count($medikamente); ++$i) {
 											    
-										echo '<option value="' . $medikamente['ID'] . '">' . $medikamente['Name'] . '</option>';
+										echo '<option value="' . $medikamente[$i]['ID'] . '">' . $medikamente[$i]['Name'] . '</option>';
 											}
 										
 										?>
