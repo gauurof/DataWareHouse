@@ -18,7 +18,6 @@ function getMedikamente(){
 }
 
 function getPerson($alter, $geschlecht, $ID_vorbelastung){
-		
 	$tmp = mysql_query("SELECT `ID` FROM `Person`, `PersonVorbelastung` 
 						WHERE `Geburtsdatum` < '$alter[1]' 
 						AND `Geburtsdatum` > '$alter[0]' 
@@ -26,7 +25,7 @@ function getPerson($alter, $geschlecht, $ID_vorbelastung){
 	while($row = mysql_fetch_object($tmp)){
 		$ID_pers[] = $row;
 	}
-	return $ID_pers
+	return $ID_pers;
 }
 
 function getWirkung($ID_pers, $ID_medikament){
