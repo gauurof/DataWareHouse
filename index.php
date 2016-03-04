@@ -2,6 +2,7 @@
 
 include_once('db.php');
 $medikamente = getMedikamente();
+$vorbelastungen = getVorbelastungen();
 
 ?>
 <!DOCTYPE html>
@@ -107,8 +108,17 @@ $medikamente = getMedikamente();
 								<label class="col-md-4 control-label" for="selectbasic">Vorbelastung auswählen</label>
 								<div class="col-md-5">
 									<select id="vorbelastung" name="vorbelastung" class="form-control">
-										<option value="1">Schnupfen</option>
-										<option value="2">Husten</option>
+									<?php
+										for($i = 0; $i < count($vorbelastungen); ++$i) {
+											    
+										echo '<option value="' . $vorbelastungen[$i]['ID'] . '">' . $vorbelastungen[$i]['Name'] . '</option>';
+											}
+										
+										?>
+
+
+										<!--<option value="1">Schnupfen</option>
+										<option value="2">Husten</option>-->
 									</select>
 									<hr>
 								</div>

@@ -17,6 +17,14 @@ function getMedikamente(){
 	return $Name;
 }
 
+function getVorbelastungen(){
+	$tmp = mysql_query("SELECT `Name` FROM `Vorbelastung`;");
+	while($row = mysql_fetch_array($tmp)){
+		$Name[] = $row;
+	}
+	return $Name;
+}
+
 function getPerson($alter, $geschlecht, $ID_vorbelastung){
 	$tmp = mysql_query("SELECT `ID` FROM `Person`, `PersonVorbelastung` 
 						WHERE `Geburtsdatum` < '$alter[1]' 
