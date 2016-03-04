@@ -32,6 +32,24 @@ else
 	$vorbelastung = ""
 }
 #=============================================================
+function getNebenwirkungen(){
+	$tmp = mysql_query("SELECT `Name` FROM `Nebenwirkung`;");
+	while($row = mysql_fetch_object($tmp)){
+		$Name[] = $row;
+	}
+	
+	return $Name;
+}
+
+function getMedikamente(){
+	$tmp = mysql_query("SELECT `Name` FROM `Medikamente`;");
+	while($row = mysql_fetch_object($tmp)){
+		$Name[] = $row;
+	}
+	
+	return $Name;
+}
+
 function getPerson($alter, $geschlecht, $ID_vorbelastung){
 		
 	$tmp = mysql_query("SELECT `ID` FROM `Person`, `PersonVorbelastung` 
