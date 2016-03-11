@@ -2,15 +2,15 @@
 include_once("config.php");
 
 function getNebenwirkungen(){
-	$tmp = mysql_query("SELECT `Name` FROM `Nebenwirkung`;");
-	while($row = mysql_fetch_object($tmp)){
+	$tmp = mysql_query("SELECT Nebenwirkung.Name, Nebenwirkung.ID FROM Nebenwirkung;");
+	while($row = mysql_fetch_array($tmp)){
 		$Name[] = $row;
 	}
 	return $Name;
 }
 
 function getMedikamente(){
-	$tmp = mysql_query("SELECT `Name` FROM `Medikament`;");
+	$tmp = mysql_query("SELECT Medikament.Name, Medikament.ID FROM Medikament;");
 	while($row = mysql_fetch_array($tmp)){
 		$Name[] = $row;
 	}
@@ -18,7 +18,7 @@ function getMedikamente(){
 }
 
 function getVorbelastungen(){
-	$tmp = mysql_query("SELECT `Name` FROM `Vorbelastung`;");
+	$tmp = mysql_query("SELECT Vorbelastung.Name, Vorbelastung.ID FROM Vorbelastung;");
 	while($row = mysql_fetch_array($tmp)){
 		$Name[] = $row;
 	}
@@ -26,42 +26,54 @@ function getVorbelastungen(){
 }
 
 function getPerson($alter, $geschlecht, $ID_vorbelastung){
-	$tmp = mysql_query("SELECT `ID` FROM `Person`, `PersonVorbelastung` 
-						WHERE `Geburtsdatum` < '$alter[1]' 
-						AND `Geburtsdatum` > '$alter[0]' 
-						AND" . $geschlecht . $ID_vorbelastung .";");
-	while($row = mysql_fetch_object($tmp)){
-		$ID_pers[] = $row;
+	if($ID_vorbelastung = "none"){
+		$query = "SELECT Person.ID FROM Person WHERE TIMESTAMPDIFF(YEAR, Person.Geburtsdatum ,CURDATE()) BETWEEN " . $alter[0] .
+                           " AND " . $alter[1] . $geschlecht . ";";
+	}
+	else{
+		$query = "SELECT Person.ID FROM Person, PersonVorbelastung WHERE TIMESTAMPDIFF(YEAR, Person.Geburtsdatum ,CURDATE()) BETWEEN " . $alter[0] .
+                 	 " AND " . $alter[1] . $geschlecht . $ID_vorbelastung . ";";
+	
+#		$query = "SELECT Person.ID FROM Person, PersonVorbelastung WHERE TIMESTAMPDIFF(YEAR, Person.Geburtsdatum ,CURDATE()) BETWEEN " . $alter[0] .
+#                        " AND " . $alter[1] . " AND Person.Geschlecht ='" . "f" . "'" . " AND Person.ID = PersonVorbelastung.ID_Person AND PersonVorbelastung.ID_Vorbelastung = 1" . ";";
+	}
+
+	$tmp = mysql_query($query);
+	while($row = mysql_fetch_array($tmp)){
+		$ID_pers[] = $row['ID'];
 	}
 	return $ID_pers;
 }
 
 function getWirkung($ID_pers, $ID_medikament){
+	$wirkung = [0,0,0,0,0];
 	for ($i = 0; $i < count($ID_pers); $i++) {
-		$tmp = mysql_query("SELECT `Wertung` FROM `Wirkung`,`Testergebnis` 
-							WHERE  `Wirkung.ID` = `ID_Wirkung` 
-							AND `ID_Person` = $ID_pers[$i]
-							AND `ID_Medikament` = $ID_medikament;");
+		$query = "SELECT Wirkung.Wertung FROM Wirkung, Testergebnis
+                                                        WHERE Wirkung.ID = Testergebnis.ID_Wirkung
+                                                        AND Testergebnis.ID_Person = " . $ID_pers[$i] .
+                                                        " AND Testergebnis.ID_Medikament = " . $ID_medikament . ";";
+		$tmp = mysql_query($query);
 		while($row = mysql_fetch_object($tmp)){
-			$wirkung[$tmp] += 1;
+			$wirkung[$row['Wertung']] += 1;
 		}
-	}		
+	}
 	return $wirkung;
-
 }
 
 function getNebenwirkung($ID_pers, $ID_medikament, $ID_nebenwirkung){
+	$nebenwirkungen= [0,0,0,0,0];
 	for ($i = 0; $i < count($ID_pers); $i++) {
-		$tmp = mysql_query("SELECT `Nebenwirkung.Wertung` FROM `Nebenwirkung`,`Testergebnis`, `TestergebnisNebenwirkung`
-							WHERE  `ID_Testergebnis` = `Testergebnis.ID` 
-							AND `ID_Person` = $ID_pers[$i]
-							AND `Nebenwirkung.ID` = `ID_Nebenwirkung`
-							AND `Nebenwirkung.ID` = $ID_nebenwirkung
-							AND `ID_Medikament` = $ID_medikament;");
-		while($row = mysql_fetch_object($tmp)){
-			$nebenwirkungen[$tmp] += 1;
+		$query = "SELECT Nebenwirkung.Wertung FROM Nebenwirkung, TestergebnisNebenwirkung, Testergebnis  
+                                                        WHERE  TestergebnisNebenwirkung.ID_Testergebnis = Testergebnis.ID
+                                                        AND Testergebnis.ID_Person = ".$ID_pers[$i].
+                                                        " AND Nebenwirkung.ID = TestergebnisNebenwirkung.ID_Nebenwirkung
+                                                        AND Nebenwirkung.ID = ".$ID_nebenwirkung.
+                                                        " AND Testergebnis.ID_Medikament = ".$ID_medikament.";";
+		$tmp = mysql_query($query);
+		while($row = mysql_fetch_array($tmp)){
+			$nebenwirkungen[$row['Wertung']] += 1;
 		}
-	}		
+	}
 	return $nebenwirkungen;
 }
 ?>

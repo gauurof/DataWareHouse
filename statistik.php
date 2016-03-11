@@ -21,23 +21,33 @@ $ID_medikament = 1; #$_POST["medikament"];
 
 # String, $geschlecht = "m"/"f"
 if(isset($_POST["geschlecht"])){
-	$geschlecht = " AND `Geschlecht` ='" . $_POST["geschlecht"] . "'";
+	$geschlecht = " AND Person.Geschlecht ='" . $_POST["geschlecht"] . "'";
 }
 else{
 	$geschlecht = "";
 }
-# String, $ID_vorbelastung = "raucher"
+# String, $ID_vorbelastung = 1
 if(isset($_POST["vorbelastung"])){
 	$ID_vorbelastung = $_POST["vorbelastung"];
-	$ID_vorbelastung = " AND `ID` = `ID_Person` AND `ID_Vorbelastung` = $ID_vorbelastung";
+	$ID_vorbelastung = " AND Person.ID = PersonVorbelastung.ID_Person AND PersonVorbelastung.ID_Vorbelastung = $ID_vorbelastung";
 }
 else{
-	$vorbelastung = "";
+	$ID_vorbelastung = "none";
 }
 
 # Ablauf für Erstellung der Statistik
 $ID_pers = getPerson($alter, $geschlecht, $ID_vorbelastung);
 $wirkungen = getWirkung($ID_pers, $ID_medikament);
 $nebenWirkungen = getNebenwirkung($ID_pers, $ID_medikament, $ID_nebenwirkung);
+
+echo "ID_Pers:\n";
+print_r($ID_pers);
+echo "wirkung:\n";
+print_r($wirkungen);
+echo "nebenWirkung:\n";
+print_r($nebenWirkungen);
+#echo "medikamente:\n";
+#print_r(getMedikamente());
 ?>
 </body>
+</html>
