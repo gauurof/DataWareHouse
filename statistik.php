@@ -11,13 +11,16 @@ include_once("db.php");
 #Variablen
 #=============================================================
 #Int-Array, $alter = [20,50] 
-$alter = [20,50]; #$_POST["alter"];
+$alter = [20,60]; 
+#$_POST["alter"];
 
 #Int, $ID_nebenwirkung = 15
-$ID_nebenwirkung = 1;#$_POST["nebenwirkung"];
+$ID_nebenwirkung = 10;
+#$_POST["nebenwirkung"];
 
 # String, $ID_medikament = 1
-$ID_medikament = 1; #$_POST["medikament"];
+$ID_medikament = 3; 
+#$_POST["medikament"];
 
 # String, $geschlecht = "m"/"f"
 if(isset($_POST["geschlecht"])){
@@ -37,17 +40,31 @@ else{
 
 # Ablauf für Erstellung der Statistik
 $ID_pers = getPerson($alter, $geschlecht, $ID_vorbelastung);
-$wirkungen = getWirkung($ID_pers, $ID_medikament);
-$nebenWirkungen = getNebenwirkung($ID_pers, $ID_medikament, $ID_nebenwirkung);
+#$wirkungen = getWirkung($ID_pers, $ID_medikament);
+#$nebenWirkungen = getNebenwirkung($ID_pers, $ID_medikament, $ID_nebenwirkung);
 
-echo "ID_Pers:\n";
-print_r($ID_pers);
+$nw = getNebenwirkungFull($ID_pers, 1);
+print_r($nw);
+$nw = getNebenwirkungFull($ID_pers, 2);
+print_r($nw);
+$nw = getNebenwirkungFull($ID_pers, 3);
+print_r($nw);
+$nw = getNebenwirkungFull($ID_pers, 4);
+print_r($nw);
+$nw = getNebenwirkungFull($ID_pers, 5);
+print_r($nw);
+
+
+#echo "ID_Pers:\n";
+#print_r($ID_pers);
 echo "wirkung:\n";
 print_r($wirkungen);
 echo "nebenWirkung:\n";
 print_r($nebenWirkungen);
 #echo "medikamente:\n";
 #print_r(getMedikamente());
+
+#print_r();
 ?>
 </body>
 </html>

@@ -8,18 +8,15 @@ $vorbelastungen = getVorbelastungen();
 <!DOCTYPE html>
 <html lang="de">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UFT-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta charset="utf-8">
 		<title>Alcata&#351;</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-
-		<link href="css/nouislider.css" rel="stylesheet">
+		<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 		<link href="css/nouislider.min.css" rel="stylesheet">
-
-		<script src="js/nouislider.min.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-static">
@@ -28,10 +25,7 @@ $vorbelastungen = getVorbelastungen();
 				<div class="nav-collapse collase">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="#">Statistik</a>
-						</li>
-						<li>
-							<a href="#">Medikamente</a>
+							<a href="index.php">Statistik</a>
 						</li>
 					</ul>
 				</div>
@@ -41,14 +35,8 @@ $vorbelastungen = getVorbelastungen();
 		<header class="masthead">
 			<div class="container">
 				<div class="row">
-					<div class="col col-sm-6">
-						<h1><a href="#" title="scroll down for your viewing pleasure">Alcata&#351;</a>
-						<p class="lead">
-							All Hail Marc S!
-						</p></h1>
-					</div>
-					<div class="col col-sm-6" style="text-align:right">
-						<img src="img/logo.png">
+					<div class="col col-sm-6" style="text-align:left">
+						<img src="img/logo.png" alt="Firmen logo">
 					</div>
 				</div>
 			</div>
@@ -61,7 +49,7 @@ $vorbelastungen = getVorbelastungen();
 						<form action="statistik2.php" method="post">
 							<br/>
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="selectbasic">Medikament ausw&auml;hlen</label>
+								<label class="col-md-4 control-label" for="medikament">Medikament ausw&auml;hlen</label>
 								<div class="col-md-5">
 
 									<select id="medikament" name="medikament" class="form-control">
@@ -76,7 +64,7 @@ $vorbelastungen = getVorbelastungen();
 							</div>
 
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="radios">Geschlecht</label>
+								<label class="col-md-4 control-label" for="radios-0">Geschlecht</label>
 								<div class="col-md-5">
 									<div class="radio">
 										<label for="radios-0">
@@ -93,7 +81,7 @@ $vorbelastungen = getVorbelastungen();
 							</div>
 
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="radios">Alter</label>
+								<label class="col-md-4 control-label">Alter</label>
 								<div class="col-md-5">
 									<div id="slider"></div>
 									<br>
@@ -105,7 +93,7 @@ $vorbelastungen = getVorbelastungen();
 							</div>
 
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="selectbasic">Vorbelastung ausw&auml;hlen</label>
+								<label class="col-md-4 control-label" for="vorbelastung">Vorbelastung ausw&auml;hlen</label>
 								<div class="col-md-5">
 									<select id="vorbelastung" name="vorbelastung" class="form-control">
 										<?php
@@ -136,9 +124,8 @@ $vorbelastungen = getVorbelastungen();
 
 		<!-- script references -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+		<script src="js/nouislider.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
 

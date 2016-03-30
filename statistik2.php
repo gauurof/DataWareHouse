@@ -4,17 +4,24 @@ include_once('db.php');
 $medikamente = getMedikamente();
 $vorbelastungen = getVorbelastungen();
 
+for($i = 0; $i < count($medikamente); ++$i) {
+	if(($medikamente[$i]['ID']) == $_POST['medikament']) {
+		$medikament = $medikamente[$i]['Name'];
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UFT-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta charset="utf-8">
 		<title>Alcata&#351;</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
+		<link   href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
 	</head>
 	<body>
@@ -24,10 +31,7 @@ $vorbelastungen = getVorbelastungen();
 				<div class="nav-collapse collase">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="#">Statistik</a>
-						</li>
-						<li>
-							<a href="#">Medikamente</a>
+							<a href="index.php">Statistik</a>
 						</li>
 					</ul>
 				</div>
@@ -36,14 +40,8 @@ $vorbelastungen = getVorbelastungen();
 		<header class="masthead">
 			<div class="container">
 				<div class="row">
-					<div class="col col-sm-6">
-						<h1><a href="#" title="scroll down for your viewing pleasure">Alcata&#351;</a>
-						<p class="lead">
-							All Hail Marc S!
-						</p></h1>
-					</div>
-					<div class="col col-sm-6" style="text-align:right">
-						<img src="img/logo.png">
+					<div class="col col-sm-6" style="text-align:left">
+						<img src="img/logo.png" alt="Firmen logo">
 					</div>
 				</div>
 			</div>
@@ -55,6 +53,7 @@ $vorbelastungen = getVorbelastungen();
 				<div class="row">
 					<div class="col col-sm-9">
 						<div class="panel">
+						<h1 style="text-align: center;">Statistik für <?php echo $medikament ;?> </h1>
 							<br>
 							<div id="wirkung" style="min-width: 100%; height:100%; margin: 0 auto;  "></div>
 							<div id="nebenwirkung" style="min-width: 100%; height: 100%; margin: 0 auto;  "></div>
@@ -68,7 +67,7 @@ $vorbelastungen = getVorbelastungen();
 
 		<!-- script references -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		
 		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -163,7 +162,7 @@ $vorbelastungen = getVorbelastungen();
 							name : 'Atemnot',
 							y : 3,
 						}, {
-							name : 'Schmieblutungen',
+							name : 'Schmierblutungen',
 							y : 1
 						}, {
 							name : 'Unterleibsschmerzen',
